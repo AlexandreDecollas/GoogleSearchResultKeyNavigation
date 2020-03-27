@@ -1,14 +1,14 @@
 {
     "manifest_version": 2,
-    "name": "Instant search keyboard shortcut",
-    "description": "Restores some of the keyboard shortcuts available in instant search",
-    "version": "0.1.1",
-    "author": "Kirens",
+    "name": "Google Search Result Key Navigation",
+    "description": "Navigate throw google search results with keys",
+    "version": "1.0.0",
+    "author": "Alexandre Decollas",
     "icons": {
-        "16":  "res/icon16.png",
-        "48":  "res/icon48.png",
-        "128": "res/icon128.png",
-        "256": "res/icon256.png"
+        "16":  "assets/icon16.png",
+        "48":  "assets/icon48.png",
+        "128": "assets/icon128.png",
+        "256": "assets/icon256.png"
     },
 
     "content_scripts": [
@@ -17,8 +17,8 @@
                 "*://www.google.com/search*",
                 "*://www.google.se/search*"
             ],
-            "js": ["instant.js"],
-            "css": ["instant.css"],
+            "js": ["google-search-result-key-navigation.js", "utils.js"],
+            "css": ["google-search-result-key-navigation.css"],
             "run_at": "document_start"
         }
     ], "web_accessible_resources": [
