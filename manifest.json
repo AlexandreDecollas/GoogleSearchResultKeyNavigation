@@ -14,7 +14,7 @@
             "matches":[
                 "*://www.google.com/search*"
             ],
-            "js": ["bundle.js"],
+            "js": ["dist/bundle.js"],
             "css": ["src/google-search-result-key-navigation.css"],
             "run_at": "document_start"
         }

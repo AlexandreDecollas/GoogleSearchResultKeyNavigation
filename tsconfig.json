@@ -1,20 +1,18 @@
 {
   "compilerOptions": {
-    "moduleResolution": "Node",
     "target": "es5",
-    "module": "esnext",
+    "module": "commonjs",
+    "outFile": "dist/bundle.js",
     "lib": [
-      "es2015",
+      "esnext",
       "dom"
     ],
+    "outDir": "./dist/",
     "strict": true,
     "declaration": true,
-    "outDir": "dist",
     "sourceMap": true
   },
   "include": [
     "./src/**/*"
-  ],
-  "exclude": ["node_modules/", "tests/**/*.spec.ts"]
-
+  ]
 }

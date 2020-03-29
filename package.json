@@ -1,19 +1,25 @@
 {
   "license": "mit",
   "scripts": {
-    "compile": "tsc-bundle src/index.ts --outFile bundle.js",
+    "compile": "tsc-bundle tsconfig.json",
+    "update:dependencies": "yarn install",
+    "updateAndBuild": "yarn update:dependencies && yarn compile",
     "test": "jest",
     "tdd": "jest --watch"
   },
   "dependencies": {},
   "devDependencies": {
-    "@types/jest": "25.1.4",
+    "@types/jest": "^25.1.4",
     "@types/node": "13.9.5",
     "awesome-typescript-loader": "5.2.1",
     "eslint": "6.8.0",
-    "jest": "25.2.3",
+    "jest": "^25.2.3",
+    "pretty-format": "25.2.3",
     "source-map-loader": "0.2.4",
-    "ts-jest": "25.2.1",
-    "typescript": "3.8.3"
+    "ts-jest": "^25.2.1",
+    "ts-loader": "^6.2.2",
+    "typescript": "3.8.3",
+    "webpack": "^4.42.1",
+    "webpack-cli": "^3.3.11"
   }
 }
