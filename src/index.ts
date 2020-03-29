@@ -1,20 +1,20 @@
 import IGoogleSearchParser from "./google-search-parser/google-search-parser.interface";
 import GoogleSearchParser from "./google-search-parser/google-search-parser";
-import IGlobalState from "./constants/global-state";
+import GlobalState from "./constants/global-state";
+import isEmpty from "lodash/isEmpty";
 
-const state: IGlobalState = {
-  pointerPosition: -1,
-};
+const state: GlobalState = new GlobalState();
 
-addEventListener("keydown", (event: any) => {
-  const googleSearchParser: IGoogleSearchParser = new GoogleSearchParser(
-    document
-  );
-  const linkSections: HTMLElement[] = googleSearchParser.getLinkSections();
-  console.log("linkSections : ", linkSections);
+addEventListener("keydown", (event: KeyboardEvent) => {
+  if (isEmpty(state.linkSections)) {
+      const googleSearchParser: IGoogleSearchParser = new GoogleSearchParser(
+        document
+      );
+      state.linkSections = googleSearchParser.getLinkSections();
+  }
 
   if (state.pointerPosition > -1) {
-    linkSections[state.pointerPosition].style.background = "";
+    state.linkSections[state.pointerPosition].style.background = "";
   }
 
   switch (event.key) {
@@ -37,8 +37,8 @@ addEventListener("keydown", (event: any) => {
   console.log("state.pointerPosition : ", state.pointerPosition);
   console.log(
     "linkSections[state.pointerPosition] : ",
-    linkSections[state.pointerPosition]
+    state.linkSections[state.pointerPosition]
   );
-  linkSections[state.pointerPosition].style.background = "grey";
-  linkSections[state.pointerPosition].scrollIntoView(false);
+  state.linkSections[state.pointerPosition].style.background = "grey";
+  state.linkSections[state.pointerPosition].scrollIntoView(false);
 });
