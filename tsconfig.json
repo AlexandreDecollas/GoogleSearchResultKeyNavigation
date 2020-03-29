@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "Node",
+    "target": "es5",
+    "module": "esnext",
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "strict": true,
+    "declaration": true,
+    "outDir": "dist",
+    "sourceMap": true
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": ["node_modules/", "tests/**/*.spec.ts"]
+
+}

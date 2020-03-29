@@ -6,24 +6,19 @@
     "author": "Alexandre Decollas",
     "icons": {
         "16":  "assets/icon16.png",
-        "48":  "assets/icon48.png",
-        "128": "assets/icon128.png",
-        "256": "assets/icon256.png"
+        "128": "assets/icon128.png"
     },
 
     "content_scripts": [
         {
             "matches":[
-                "*://www.google.com/search*",
-                "*://www.google.se/search*"
+                "*://www.google.com/search*"
             ],
-            "js": ["google-search-result-key-navigation.js", "utils.js"],
-            "css": ["google-search-result-key-navigation.css"],
+            "js": ["bundle.js"],
+            "css": ["src/google-search-result-key-navigation.css"],
             "run_at": "document_start"
         }
-    ], "web_accessible_resources": [
-        "essentials.css"
     ], "permissions": [
-        "https://www.google.se/*"
+        "https://www.google.com/*"
     ]
 }
