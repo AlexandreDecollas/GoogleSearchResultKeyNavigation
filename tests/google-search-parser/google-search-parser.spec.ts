@@ -1,60 +1,75 @@
-import IGoogleSearchParser from '../../src/google-search-parser/google-search-parser.interface';
-import GoogleSearchParser from '../../src/google-search-parser/google-search-parser';
-import {LINK_SECTION_CSS, LINK_SECTION_SELECTOR, RESULT_SECTION_ID} from '../../src/constants/global.constant';
+import IGoogleSearchParser from "../../src/google-search-parser/google-search-parser.interface";
+import GoogleSearchParser from "../../src/google-search-parser/google-search-parser";
+import {
+  LINK_SECTION_CSS,
+  LINK_SECTION_SELECTOR,
+  RESULT_SECTION_ID,
+} from "../../src/constants/global.constant";
 import Spy = jasmine.Spy;
 
-describe('GoogleSearchParser', () => {
+describe("GoogleSearchParser", () => {
+  let googleSearchParser: IGoogleSearchParser;
+  let document: Document = new Document();
 
-    let googleSearchParser: IGoogleSearchParser;
-    let document: Document = new Document();
-    let getElementByIdMock: Spy;
+  it("should parse all clickable section of google search page at init", () => {
+    let getElementByIdMock: Spy = spyOn(
+      document,
+      "getElementById"
+    ).and.returnValue(document);
+    const querySelectorAllMock: Spy = spyOn(
+      document,
+      "querySelectorAll"
+    ).and.returnValue([]);
 
-    beforeAll(() => {
-        // Object.defineProperty(global, 'document', {});
-    });
+    googleSearchParser = new GoogleSearchParser(document);
 
-    beforeEach(() => {
-         getElementByIdMock = spyOn(document, 'getElementById').and.returnValue(document);
+    expect(getElementByIdMock).toHaveBeenCalledWith(RESULT_SECTION_ID);
+    expect(querySelectorAllMock).toHaveBeenCalledWith(LINK_SECTION_SELECTOR);
+  });
 
-    });
+  it(`should filter element containing only ${LINK_SECTION_CSS} css class`, () => {
+    spyOn(document, "getElementById").and.returnValue(document);
+    spyOn(document, "querySelectorAll").and.returnValue([
+      {
+        className: "g",
+        parentElement: document,
+      },
+      {
+        className: "g toto",
+        parentElement: document,
+      },
+      {
+        className: "g tutu",
+        parentElement: document,
+      },
+    ]);
 
-    it('should parse all clickable section of google search page at init', () => {
-        const querySelectorAllMock = spyOn(document, 'querySelectorAll').and.returnValue([]);
+    googleSearchParser = new GoogleSearchParser(document);
+    expect(googleSearchParser.getLinkSections().length).toEqual(1);
+  });
 
-        googleSearchParser = new GoogleSearchParser(document);
+  it(`should add only children element containing ${LINK_SECTION_CSS} css class`, () => {
+    spyOn(document, "getElementById").and.returnValue(document);
+    spyOn(document, "querySelectorAll").and.returnValue([
+      {
+        className: "g",
+        parentElement: document,
+      },
+      {
+        className: "g toto",
+        parentElement: document,
+      },
+      {
+        className: "g",
+        parentElement: null,
+      },
+    ]);
 
-        expect(getElementByIdMock).toHaveBeenCalledWith(RESULT_SECTION_ID);
-        expect(querySelectorAllMock).toHaveBeenCalledWith(LINK_SECTION_SELECTOR);
-    });
+    googleSearchParser = new GoogleSearchParser(document);
+    expect(googleSearchParser.getLinkSections().length).toEqual(1);
+  });
 
-    it(`should filter element containing only ${LINK_SECTION_CSS} css class`, () => {
-        spyOn(document, 'querySelectorAll').and.returnValue([
-            {
-                attributes: {
-                    class: {
-                        value: 'g'
-                    }
-                }
-            },
-            {
-                attributes: {
-                    class: {
-                        value: 'g toto'
-                    }
-                }
-            },
-            {
-                attributes: {
-                    class: {
-                        value: 'g tutu'
-                    }
-                }
-            }
-        ]);
+  it(`should highlight link when link's id is pointer's id`, () => {
 
-        googleSearchParser = new GoogleSearchParser(document);
-        expect(googleSearchParser.getLinkSections().length).toEqual(1);
-    });
-
-
+  });
 });
