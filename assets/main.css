@@ -1,0 +1,14 @@
+.highlight {
+  background: #f0f0f0;
+  /*padding: 12px;*/
+  border-radius: 8px;
+  /*transform: scale(1.1);*/
+  transition: all 4ms;
+}
+
+.highlight .GHDvEf {
+  background: transparent;
+}
+.highlight a:focus {
+  outline: none;
+}

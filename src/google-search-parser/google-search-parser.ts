@@ -1,13 +1,9 @@
 import IGoogleSearchParser from "./google-search-parser.interface";
-import {
-  LINK_SECTION_CSS,
-  LINK_SECTION_SELECTOR,
-  RESULT_SECTION_ID,
-} from "../constants/global.constant";
+import {LINK_SECTION_CSS, LINK_SECTION_SELECTOR, RESULT_SECTION_ID,} from "../constants/global.constant";
 
 export default class GoogleSearchParser implements IGoogleSearchParser {
   private _document: Document;
-  private _linkSections: HTMLElement[];
+  private _linkSections: Element[];
 
   constructor(document: Document) {
     this._document = document;
@@ -30,7 +26,7 @@ export default class GoogleSearchParser implements IGoogleSearchParser {
     return links;
   }
 
-  public getLinkSections(): HTMLElement[] {
+  public getLinkSections(): Element[] {
     return this._linkSections;
   }
 

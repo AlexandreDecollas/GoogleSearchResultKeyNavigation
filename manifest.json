@@ -15,7 +15,7 @@
                 "*://www.google.com/search*"
             ],
             "js": ["dist/bundle.js"],
-            "css": ["src/google-search-result-key-navigation.css"],
+            "css": ["assets/main.css"],
             "run_at": "document_start"
         }
     ], "permissions": [

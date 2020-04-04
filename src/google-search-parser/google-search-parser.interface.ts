@@ -1,4 +1,4 @@
 export default interface IGoogleSearchParser {
-    getLinkSections(): HTMLElement[];
+    getLinkSections(): Element[];
 }
 
